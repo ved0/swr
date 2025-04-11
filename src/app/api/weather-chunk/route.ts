@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   const unsplashApiKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
   if (!choice) {
-    return NextResponse.json({ matches: [], totalMatches: 0, displayed: 0 });
+    return NextResponse.json({ matches: [] });
   }
 
   if (!apiKey) {
@@ -40,7 +40,6 @@ export async function GET(req: NextRequest) {
   if (batchCities.length === 0) {
     return NextResponse.json({
       matches: [],
-      message: "No cities in this batch.",
     });
   }
 
@@ -122,7 +121,5 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({
     matches: citiesWithImages,
-    totalMatches: matches.length,
-    displayed: citiesWithImages.length,
   });
 }
